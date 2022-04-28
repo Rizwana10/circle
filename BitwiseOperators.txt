@@ -1,0 +1,209 @@
+Use .h files and fns in programs 
+
+1.Write a C program to check Least Significant Bit (LSB) of a number is set or not.
+
+#include <stdio.h>
+int main()
+{
+    int num;
+    
+    /* Input number from user */
+    printf("Enter any number: ");
+    scanf("%d", &num);
+
+    /* If (num & 1) evaluates to 1 */
+    if(num & 1)
+        printf("LSB of %d is set (1).", num);
+    else
+        printf("LSB of %d is unset (0).", num);
+
+    return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Write a C program to check Most Significant Bit (MSB) of a number is set or not.
+
+#include <stdio.h>
+#define BITS sizeof(int) * 8 // Total bits required to represent integer
+
+int main()
+{
+    int num, msb;
+
+    /* Input number from user */
+    printf("Enter any number: ");
+    scanf("%d", &num);
+
+    /* Move first bit of 1 to highest order */
+    msb = 1 << (BITS - 1);
+
+    /* Perform bitwise AND with msb and num */
+    if(num & msb)
+        printf("MSB of %d is set (1).", num);
+    else
+        printf("MSB of %d is unset (0).", num);
+
+    return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.Write a C program to get nth bit of a number.
+
+#include <stdio.h>
+int main()
+{
+    int number,bit_pos;
+    /* Get the number input */
+    printf("Enter the Number:");
+    scanf("%d", &number);
+    /* Get the bit position input */
+    printf("Enter the Bit position you want to get(Between 0-31):");
+    scanf("%d", &bit_pos);
+    /* Calculating the bit mask*/
+    int mask=(1<<bit_pos);
+    /* Checking the Given Position bit is 0 or 1*/
+    if (number & mask)
+        printf("Given Position bit is 1.\n");
+    else
+        printf("Given Position bit is 0.\n");
+    return 0;
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.Write a C program to set nth bit of a number.
+
+
+#include <stdio.h>
+
+int main()
+{
+    int num, n, newNum;
+
+    /* Input number from user */
+    printf("Enter any number: ");
+    scanf("%d", &num);
+
+    /* Input bit position you want to set */
+    printf("Enter nth bit to set (0-31): ");
+    scanf("%d", &n);
+
+    /* Left shift 1, n times and perform bitwise OR with num */
+    newNum = (1 << n) | num;
+
+    printf("Bit set successfully.\n\n");
+    printf("Number before setting %d bit: %d (in decimal)\n", n, num);
+    printf("Number after setting %d bit: %d (in decimal)\n", n, newNum);
+
+    return 0;
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5.Write a C program to clear nth bit of a number.
+
+#include <stdio.h>
+
+int main()
+{
+    int num, n, newNum;
+
+    /* Input number from user */
+    printf("Enter any number: ");
+    scanf("%d", &num);
+
+    /* Input bit number you want to clear */
+    printf("Enter nth bit to clear (0-31): ");
+    scanf("%d", &n);
+
+    /*
+     * Left shifts 1 to n times
+     * Perform complement of above
+     * finally perform bitwise AND with num and result of above
+     */
+    newNum = num & (~(1 << n));
+
+    printf("Bit cleared successfully.\n\n");
+    printf("Number before clearing %d bit: %d (in decimal)\n", n, num);
+    printf("Number after clearing %d bit: %d (in decimal)\n", n, newNum);
+
+    return 0;
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6.Write a C program to toggle nth bit of a number.
+
+
+#include <stdio.h>
+
+int main()
+{
+    int num, n, newNum;
+
+    /* Input number from user */
+    printf("Enter any number: ");
+    scanf("%d", &num);
+
+    /* Input bit position you want to toggle */
+    printf("Enter nth bit to toggle (0-31): ");
+    scanf("%d", &n);
+
+    /*
+     * Left shifts 1, n times
+     * then perform bitwise XOR with num
+     */
+    newNum = num ^ (1 << n);
+
+    printf("Bit toggled successfully.\n\n");
+    printf("Number before toggling %d bit: %d (in decimal)\n", n, num);
+    printf("Number after toggling %d bit: %d (in decimal)\n", n, newNum);
+
+    return 0;
+}
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7.Write a C program to swap two numbers using bitwise operator.
+
+#include <stdio.h>
+#include <string.h>
+ 
+/* Function Prototype */
+void swap(int*, int *);
+ 
+void main()
+{
+    int num1, num2;
+    printf("\nEnter two numbers:");
+    scanf("%d %d", &num1, &num2);
+    printf("\nThe numbers before swapping are Number1= %d Number2 = %d", num1, num2);
+    swap(&num1, &num2);        /* Call by Reference to function swap */
+    printf("\nThe numbers after swapping are Number1= %d Number2 = %d", num1, num2);
+}
+ 
+/* Code to swap two numbers using bitwise operator */
+void swap(int *x, int *y)
+{
+    *x = *x ^ *y;
+    *y = *x ^ *y;
+    *x = *x ^ *y;
+}
+
+
+
+
+
+
+
+
+
